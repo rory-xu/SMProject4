@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project4.StoreFrontController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.StoreOrderViewController">
+   <children>
+      <VBox layoutY="190.0" prefHeight="210.0" prefWidth="230.0">
+         <children>
+            <Button fx:id="donutButton" mnemonicParsing="false" onAction="#donutButtonClick" prefHeight="114.0" prefWidth="230.0" text="Donut">
+               <graphic>
+                  <ImageView fitHeight="113.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@donut.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="coffeeButton" mnemonicParsing="false" onAction="#coffeeButtonClick" prefHeight="104.0" prefWidth="265.0" text="Coffee">
+               <graphic>
+                  <ImageView fitHeight="113.0" fitWidth="166.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@coffee.jpg" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </VBox>
+      <VBox layoutX="370.0" layoutY="190.0" prefHeight="210.0" prefWidth="230.0">
+         <children>
+            <Button fx:id="ordersButton" mnemonicParsing="false" onAction="#ordersButtonClick" prefHeight="110.0" prefWidth="232.0" text="Your Orders" />
+            <Button fx:id="storeOrdersButton" mnemonicParsing="false" onAction="#storeOrdersButtonClick" prefHeight="105.0" prefWidth="233.0" text="Store Orders" />
+         </children>
+      </VBox>
+      <Text layoutX="233.0" layoutY="56.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rutgers Cafe">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+   </children>
 </AnchorPane>
