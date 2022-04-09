@@ -4,17 +4,20 @@
  */
 package com.example.project4;
 
-public class YeastDonut extends MenuItem {
-	private String flavor;
-	private int quantity;
+public class YeastDonut extends Donut {
 
 	public YeastDonut(String flavor, int quantity) {
-		this.flavor = flavor;
-		this.quantity = quantity;
+		super(flavor, quantity);
+
 	}
 
 	@Override
 	public double itemPrice() {
 		return 1.59 * quantity;
+	}
+
+	@Override
+	public String toString() {
+		return flavor + "(" + quantity + ")";
 	}
 }

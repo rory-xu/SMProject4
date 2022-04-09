@@ -24,6 +24,7 @@ public class StoreOrderViewController {
 			stage = new Stage();
 			stage.setTitle("Donuts");
 			stage.setScene(scene);
+
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
