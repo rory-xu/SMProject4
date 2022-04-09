@@ -47,7 +47,7 @@ public class DonutViewController {
 		switch(type) {
 			case "Yeast Donut":
 				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue());
+					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
 					donut = new YeastDonut(flavor, quantity);
 					if (flavor == null) {
 						Alert a = new Alert(Alert.AlertType.ERROR);
@@ -69,7 +69,7 @@ public class DonutViewController {
 
 			case "Cake Donut":
 				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue());
+					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
 					donut = new CakeDonut(flavor, quantity);
 					if (flavor == null) {
 						Alert a = new Alert(Alert.AlertType.ERROR);
@@ -91,7 +91,7 @@ public class DonutViewController {
 
 			case "Donut Hole":
 				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue());
+					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
 					donut = new DonutHole(flavor, quantity);
 					if (flavor == null) {
 						Alert a = new Alert(Alert.AlertType.ERROR);
@@ -176,10 +176,9 @@ public class DonutViewController {
 	}
 
 	@FXML
-	public void initialize() {
+	void initialize() {
 		ObservableList<String> donutTypes = FXCollections.observableArrayList("Yeast Donut", "Cake Donut", "Donut Hole");
 		ObservableList<String> quantity = FXCollections.observableArrayList("1", "2", "3", "4", "5");
-		ObservableList<MenuItem> ordered = FXCollections.observableArrayList();
 		donutTypeBox.setItems(donutTypes);
 		donutTypeBox.setValue("Yeast Donut");
 		numberOfDonutsBox.setItems(quantity);

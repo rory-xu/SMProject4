@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
@@ -52,6 +53,16 @@
                   </TextField>
                </children>
             </GridPane>
+            <ImageView fitHeight="89.0" fitWidth="202.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@image%20sources/donut.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="114.0" fitWidth="158.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.halignment="CENTER">
+               <image>
+                  <Image url="@image%20sources/donut.jpg" />
+               </image>
+            </ImageView>
          </children>
       </GridPane>
       <Text layoutX="262.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Donuts">
