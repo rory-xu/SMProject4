@@ -29,6 +29,10 @@ public class OrderViewController {
 	@FXML
 	private TextField subtotalBox;
 
+	/**
+	 * Submits the user's order into the store order list
+	 * @param event Displays order complete message upon submission
+	 */
 	@FXML
 	void placeOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getStoreOrders().add(storeFrontViewController.getOrder());
@@ -41,6 +45,9 @@ public class OrderViewController {
 		stage.close();
 	}
 
+	/**
+	 * Removes an item from the user's basket
+	 */
 	@FXML
 	void removeItemButtonClick() {
 		MenuItem item = itemsInOrder.getSelectionModel().getSelectedItem();
@@ -57,6 +64,9 @@ public class OrderViewController {
 
 	}
 
+	/**
+	 * Updates the monetary information of the basket
+	 */
 	@FXML
 	void updateAllTotals() {
 		double subTotal = 0.00;

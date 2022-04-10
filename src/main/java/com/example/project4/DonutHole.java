@@ -1,9 +1,9 @@
+package com.example.project4;
+
 /**
  * A Donut Hole object with specific flavors
  * @author Rory Xu, Hassan Alfareed
  */
-package com.example.project4;
-
 public class DonutHole extends Donut {
 
 	/**

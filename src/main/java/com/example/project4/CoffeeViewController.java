@@ -17,7 +17,7 @@ public class CoffeeViewController {
 
 	private StoreFrontViewController storeFrontViewController;
 	private final DecimalFormat df = new DecimalFormat("#0.00");
-	Coffee coffee = new Coffee(1.69);
+	private Coffee coffee = new Coffee(1.69);
 
 	@FXML
 	private CheckBox caramelCheckBox;
