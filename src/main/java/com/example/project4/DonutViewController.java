@@ -125,6 +125,7 @@ public class DonutViewController {
 			a.setHeaderText("Cannot remove nothing!");
 			a.setContentText("Please select an item to remove!");
 			a.showAndWait();
+			return;
 		}
 		if (donut instanceof YeastDonut) {
 			availableYeast.add(donut.flavor);
