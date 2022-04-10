@@ -24,12 +24,6 @@ public class OrderViewController {
 	private ListView<MenuItem> itemsInOrder;
 
 	@FXML
-	private Button placeOrderButton;
-
-	@FXML
-	private Button removeItemButton;
-
-	@FXML
 	private TextField salesTaxBox;
 
 	@FXML
@@ -39,7 +33,7 @@ public class OrderViewController {
 	void placeOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getStoreOrders().add(storeFrontViewController.getOrder());
 		storeFrontViewController.makeNewOrder();
-		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		Alert a = new Alert(Alert.AlertType.INFORMATION);
 		a.setHeaderText("Order complete!");
 		a.showAndWait();
 		Node source = (Node) event.getSource();

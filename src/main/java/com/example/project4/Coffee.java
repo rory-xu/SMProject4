@@ -84,16 +84,16 @@ public class Coffee extends MenuItem implements Customizable {
 		String display = null;
 		switch (Double.toString(basePrice)) {
 			case ("1.69"):
-				display = "Coffee(" + quantity + ") Short " + addIns.toString();
+				display = "Coffee(" + quantity + ") Short " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
 				break;
 			case ("2.09"):
-				display = "Coffee(" + quantity + ") Tall " + addIns.toString();
+				display = "Coffee(" + quantity + ") Tall " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
 				break;
 			case ("2.49"):
-				display = "Coffee(" + quantity + ") Grande " + addIns.toString();
+				display = "Coffee(" + quantity + ") Grande " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
 				break;
 			case ("2.89"):
-				display = "Coffee(" + quantity + ") Venti " + addIns.toString();
+				display = "Coffee(" + quantity + ") Venti " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
 				break;
 		}
 		return display;

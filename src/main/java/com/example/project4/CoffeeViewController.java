@@ -169,7 +169,7 @@ public class CoffeeViewController {
 	@FXML
 	void addCoffeeToOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getOrder().add(coffee);
-		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		Alert a = new Alert(Alert.AlertType.INFORMATION);
 		a.setHeaderText("Coffee order added!");
 		a.showAndWait();
 		Node source = (Node) event.getSource();

@@ -4,14 +4,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import java.io.IOException;
-import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ResourceBundle;
 
 /**
  * This class controls the donut view window and determines what happens when certain actions are made
@@ -165,7 +161,7 @@ public class DonutViewController {
 			for (int i = 0; i < orderedFlavors.getItems().size(); i++) {
 				storeFrontViewController.getOrder().add(orderedFlavors.getItems().get(i));
 			}
-			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+			Alert a = new Alert(Alert.AlertType.INFORMATION);
 			a.setHeaderText("Donut order added!");
 			a.showAndWait();
 			Node source = (Node) event.getSource();
