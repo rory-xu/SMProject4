@@ -4,11 +4,18 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.io.IOException;
+import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.ResourceBundle;
 
-public class DonutViewController {
+public class DonutViewController implements Initializable {
+	private StoreFrontViewController storeFrontViewController;
 	private DecimalFormat df = new DecimalFormat("#0.00");
 	private ObservableList<String> availableYeast = FXCollections.observableArrayList("Strawberry", "Chocolate", "Glazed");
 	private ObservableList<String> availableCake = FXCollections.observableArrayList("Cream", "Mint", "Sugar");
@@ -142,8 +149,10 @@ public class DonutViewController {
 	}
 
 	@FXML
-	void addDonutsToOrderButtonClick(ActionEvent event) {
-
+	void addDonutsToOrderButtonClick(ActionEvent event) throws IOException {
+		for (int i = 0; i < orderedFlavors.getItems().size(); i++) {
+			storeFrontViewController.getOrder().add(orderedFlavors.getItems().get(i));
+		}
 	}
 
 	@FXML
@@ -175,8 +184,8 @@ public class DonutViewController {
 		subtotal.setText(df.format(newSubtotal));
 	}
 
-	@FXML
-	void initialize() {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
 		ObservableList<String> donutTypes = FXCollections.observableArrayList("Yeast Donut", "Cake Donut", "Donut Hole");
 		ObservableList<String> quantity = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 		donutTypeBox.setItems(donutTypes);
@@ -187,5 +196,10 @@ public class DonutViewController {
 		numberOfDonutsBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> {numberOfDonutsBox.setValue(newVal);});
 		availableFlavors.setItems(availableYeast);
 		subtotal.setText(df.format(0.00));
+	}
+
+
+	public void setMainController(StoreFrontViewController storeFrontViewController) {
+		this.storeFrontViewController = storeFrontViewController;
 	}
 }

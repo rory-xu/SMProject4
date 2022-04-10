@@ -3,16 +3,19 @@ package com.example.project4;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
 
+import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.List;
+import java.util.ResourceBundle;
 
 public class OrderViewController {
 
+	private StoreFrontViewController storeFrontViewController;
 	private DecimalFormat df = new DecimalFormat("#0.00");
+
 
 	@FXML
 	private TextField grandTotalBox;
@@ -56,15 +59,20 @@ public class OrderViewController {
 	@FXML
 	void updateAllTotals() {
 		double subTotal = 0.00;
-
 		for (int i = 0; i < itemsInOrder.getItems().size(); i++) {
 			subTotal += itemsInOrder.getItems().get(i).itemPrice();
 		}
-		subtotalBox.setText(Double.toString(subTotal));
-		double salesTax = Double.parseDouble(df.format(Double.toString(subTotal * 0.0625)));
-		salesTaxBox.setText(Double.toString(salesTax));
-		double grandTotal = subTotal + salesTax;
-		grandTotalBox.setText(Double.toString(grandTotal));
+		subtotalBox.setText(df.format(subTotal));
+		salesTaxBox.setText(df.format(subTotal * 0.0625));
+		grandTotalBox.setText(df.format(subTotal + subTotal * 0.0625));
 	}
 
+	public void setMainController(StoreFrontViewController storeFrontViewController) {
+		this.storeFrontViewController = storeFrontViewController;
+	}
+
+	public void init() {
+		itemsInOrder.setItems(storeFrontViewController.getOrder().getItems());
+		updateAllTotals();
+	}
 }

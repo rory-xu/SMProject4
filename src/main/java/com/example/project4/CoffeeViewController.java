@@ -4,11 +4,14 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.net.URL;
 import java.text.DecimalFormat;
+import java.util.ResourceBundle;
 
-public class CoffeeViewController {
+public class CoffeeViewController implements Initializable {
 
 	private DecimalFormat df = new DecimalFormat("#0.00");
 	Coffee coffee = new Coffee(1.69);
@@ -39,6 +42,7 @@ public class CoffeeViewController {
 
 	@FXML
 	private CheckBox whippedCreamCheckBox;
+	private StoreFrontViewController storeFrontViewController;
 
 	@FXML
 	void caramelCheckBoxClicked(ActionEvent event) {
@@ -138,7 +142,7 @@ public class CoffeeViewController {
 
 	@FXML
 	void addCoffeeToOrderButtonClick(ActionEvent event) {
-
+		storeFrontViewController.getOrder().add(coffee);
 	}
 
 	@FXML
@@ -146,8 +150,8 @@ public class CoffeeViewController {
 		coffeeSubtotal.setText(df.format(coffee.itemPrice()));
 	}
 
-	@FXML
-	void initialize() {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
 		ObservableList<String> coffeeSizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
 		ObservableList<String> quantity = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 		coffeeSizeBox.setItems(coffeeSizes);
@@ -158,5 +162,9 @@ public class CoffeeViewController {
 		numberOfCoffeeBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> {numberOfCoffeeBox.setValue(newVal);});
 		coffeeSubtotal.setText(df.format(coffee.itemPrice()));
 
+	}
+
+	public void setMainController(StoreFrontViewController storeFrontViewController) {
+		this.storeFrontViewController = storeFrontViewController;
 	}
 }

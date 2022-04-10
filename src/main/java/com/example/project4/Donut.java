@@ -1,6 +1,6 @@
 package com.example.project4;
 
-public abstract class Donut extends MenuItem{
+public class Donut extends MenuItem{
 	protected String flavor;
 	protected int quantity;
 
@@ -12,5 +12,10 @@ public abstract class Donut extends MenuItem{
 	@Override
 	public String toString() {
 		return flavor + "(" + quantity + ")";
+	}
+
+	@Override
+	double itemPrice() {
+		return 0;
 	}
 }

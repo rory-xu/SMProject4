@@ -1,11 +1,12 @@
 package com.example.project4;
 
-import java.util.ArrayList;
-import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 public class StoreOrders implements Customizable{
 
-	private List<Order> items= new ArrayList<>();
+	private ObservableList<Order> items= FXCollections.observableArrayList();
 
 	@Override
 	public boolean add(Object obj) {
