@@ -25,7 +25,7 @@ public class StoreFrontViewController {
 
 	private int orderNumber = 1;
 	private Order order = new Order(orderNumber);
-	private StoreOrders storeOrders;
+	private StoreOrders storeOrders = new StoreOrders();
 
 	@FXML
 	public void donutButtonClick(ActionEvent actionEvent) throws IOException {
@@ -84,6 +84,9 @@ public class StoreFrontViewController {
 		try {
 			FXMLLoader storeOrdersLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
 			root = storeOrdersLoader.load();
+			StoreOrdersViewController storeOrdersViewController = storeOrdersLoader.getController();
+			storeOrdersViewController.setMainController(this);
+			storeOrdersViewController.init();
 			scene = new Scene(root, 600, 400);
 			stage = new Stage();
 			stage.setTitle("Store Orders");
@@ -93,7 +96,6 @@ public class StoreFrontViewController {
 			e.printStackTrace();
 		}
 	}
-
 
 	@FXML
 	public Order getOrder() {
@@ -105,4 +107,8 @@ public class StoreFrontViewController {
 		return storeOrders;
 	}
 
+	public void makeNewOrder() {
+		orderNumber++;
+		order = new Order(orderNumber);
+	}
 }

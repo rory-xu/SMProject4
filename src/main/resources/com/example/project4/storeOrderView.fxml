@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.project4.StoreFrontViewController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project4.StoreOrdersViewController">
+   <children>
+      <Text layoutX="233.0" layoutY="51.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Store Orders">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Text>
+      <ListView fx:id="storeOrdersBox" layoutX="154.0" layoutY="71.0" prefHeight="232.0" prefWidth="293.0" />
+      <GridPane layoutX="150.0" layoutY="338.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="118.0" minWidth="10.0" prefWidth="118.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="95.0" minWidth="10.0" prefWidth="65.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="122.0" minWidth="10.0" prefWidth="117.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="viewOrderDetailsButton" mnemonicParsing="false" onAction="#viewOrderDetailsButtonClick" prefHeight="25.0" prefWidth="134.0" text="View Order Details" GridPane.halignment="LEFT" />
+            <Button fx:id="deleteOrder" mnemonicParsing="false" onAction="#deleteOrderButtonClick" prefHeight="25.0" prefWidth="120.0" text="Delete Order" GridPane.columnIndex="2" />
+         </children>
+      </GridPane>
+      <Button fx:id="exportOrdersButton" layoutX="474.0" layoutY="101.0" mnemonicParsing="false" onAction="#exportOrdersButtonClick" text="Export Orders" />
+   </children>
 </AnchorPane>

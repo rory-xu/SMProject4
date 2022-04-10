@@ -37,7 +37,8 @@ public class OrderViewController {
 
 	@FXML
 	void placeOrderButtonClick(ActionEvent event) {
-
+		storeFrontViewController.getStoreOrders().add(storeFrontViewController.getOrder());
+		storeFrontViewController.makeNewOrder();
 	}
 
 	@FXML

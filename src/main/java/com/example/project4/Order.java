@@ -37,4 +37,16 @@ public class Order implements Customizable{
 		}
 		return false;
 	}
+
+	public boolean equals(Object obj) {
+		if (obj instanceof Order) {
+			return this.orderNumber == ((Order) obj).orderNumber;
+		}
+		return false;
+	}
+
+	@Override
+	public String toString() {
+		return "Order Number: " + orderNumber;
+	}
 }
