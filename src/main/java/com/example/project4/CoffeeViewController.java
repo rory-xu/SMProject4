@@ -4,7 +4,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
@@ -13,13 +12,15 @@ import java.net.URL;
 import java.text.DecimalFormat;
 import java.util.ResourceBundle;
 
-public class CoffeeViewController implements Initializable {
+/**
+ * This class controls the coffee view window and determines what happens when certain actions are made
+ * @author Rory Xu, Hassan Alfareed
+ */
+public class CoffeeViewController {
 
+	private StoreFrontViewController storeFrontViewController;
 	private DecimalFormat df = new DecimalFormat("#0.00");
 	Coffee coffee = new Coffee(1.69);
-
-	@FXML
-	private Button addCoffeeToOrderButton;
 
 	@FXML
 	private CheckBox caramelCheckBox;
@@ -44,10 +45,12 @@ public class CoffeeViewController implements Initializable {
 
 	@FXML
 	private CheckBox whippedCreamCheckBox;
-	private StoreFrontViewController storeFrontViewController;
 
+	/**
+	 * Adds/removes caramel as an add-in to/from the coffee
+	 */
 	@FXML
-	void caramelCheckBoxClicked(ActionEvent event) {
+	void caramelCheckBoxClicked() {
 		if (caramelCheckBox.isSelected()) {
 			coffee.add("Caramel");
 			updateSubtotal();
@@ -58,8 +61,11 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Adds/removes cream as an add-in to/from the coffee
+	 */
 	@FXML
-	void creamCheckBoxClick(ActionEvent event) {
+	void creamCheckBoxClick() {
 		if (creamCheckBox.isSelected()) {
 			coffee.add("Cream");
 			updateSubtotal();
@@ -70,8 +76,11 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Adds/removes milk as an add-in to/from the coffee
+	 */
 	@FXML
-	void milkCheckBoxClick(ActionEvent event) {
+	void milkCheckBoxClick() {
 		if (milkCheckBox.isSelected()) {
 			coffee.add("Milk");
 			updateSubtotal();
@@ -82,8 +91,11 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Adds/removes syrup as an add-in to/from the coffee
+	 */
 	@FXML
-	void syrupCheckBoxClicked(ActionEvent event) {
+	void syrupCheckBoxClicked() {
 		if (syrupCheckBox.isSelected()) {
 			coffee.add("Syrup");
 			updateSubtotal();
@@ -94,6 +106,10 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Adds/removes whipped cream as an add-in to/from the coffee
+	 * @param event When the checkbox is interacted with
+	 */
 	@FXML
 	void whippedCreamCheckBoxClicked(ActionEvent event) {
 		if (whippedCreamCheckBox.isSelected()) {
@@ -106,8 +122,11 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Detects when the size of the coffee is changed and modifies the base price of the coffee accordingly
+	 */
 	@FXML
-	public void typeChanged(ActionEvent actionEvent) {
+	public void sizeChanged() {
 		String size = coffeeSizeBox.getSelectionModel().getSelectedItem();
 		if (size == null) return;
 		if (size.equals("Short")) {
@@ -128,8 +147,12 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Detects when the number of coffee(s) request changes, and also ensures that only numerical values can be manually
+	 * inputted
+	 */
 	@FXML
-	void numberOfCoffeeChanged(ActionEvent event) {
+	void numberOfCoffeeChanged() {
 		if (numberOfCoffeeBox.getValue().trim() == null || numberOfCoffeeBox.getValue().trim().equals("")) return;
 		try {
 			coffee.changeQuantity(Integer.parseInt(numberOfCoffeeBox.getValue().trim()));
@@ -142,6 +165,11 @@ public class CoffeeViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * When the add to order button is clicked, the coffee is added to the order basket
+	 * Closes the window after a successful addition of coffee
+	 * @param event On button click
+	 */
 	@FXML
 	void addCoffeeToOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getOrder().add(coffee);
@@ -153,13 +181,18 @@ public class CoffeeViewController implements Initializable {
 		stage.close();
 	}
 
+	/**
+	 * Updates the subtotal display to reflect the current cost of the customized coffee
+	 */
 	@FXML
 	void updateSubtotal() {
 		coffeeSubtotal.setText(df.format(coffee.itemPrice()));
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	/**
+	 * Initializes
+	 */
+	public void initialize() {
 		ObservableList<String> coffeeSizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
 		ObservableList<String> quantity = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 		coffeeSizeBox.setItems(coffeeSizes);

@@ -64,7 +64,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ChoiceBox fx:id="coffeeSizeBox" onAction="#typeChanged" prefHeight="25.0" prefWidth="73.0" GridPane.halignment="CENTER" />
+                  <ChoiceBox fx:id="coffeeSizeBox" onAction="#sizeChanged" prefHeight="25.0" prefWidth="73.0" GridPane.halignment="CENTER" />
                   <ComboBox fx:id="numberOfCoffeeBox" onAction="#numberOfCoffeeChanged" prefHeight="25.0" prefWidth="74.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <GridPane GridPane.rowIndex="2">
                     <columnConstraints>

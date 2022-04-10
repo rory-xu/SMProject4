@@ -15,11 +15,19 @@ public class CakeDonut extends Donut {
 		super(flavor, quantity);
 	}
 
+	/**
+	 * Calculates and returns the price of the donut(s)
+	 * @return The price of the donut(s)
+	 */
 	@Override
 	public double itemPrice() {
 		return 1.79 * quantity;
 	}
 
+	/**
+	 * Displays the donut order
+	 * @return The order in text form
+	 */
 	@Override
 	public String toString() {
 		return flavor + "(" + quantity + ")";

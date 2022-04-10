@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.stage.Stage;
@@ -30,8 +31,16 @@ public class StoreOrdersViewController {
 	@FXML
 	void deleteOrderButtonClick(ActionEvent event) {
 		Order order = storeOrdersBox.getSelectionModel().getSelectedItem();
-		storeFrontViewController.getStoreOrders().getOrders().remove(order);
-		storeOrdersBox.setItems(storeFrontViewController.getStoreOrders().getOrders());
+		if (order == null) {
+			Alert a = new Alert(Alert.AlertType.ERROR);
+			a.setHeaderText("No order selected!");
+			a.setContentText("Please select an order to remove!");
+			a.showAndWait();
+		}
+		else {
+			storeFrontViewController.getStoreOrders().getOrders().remove(order);
+			storeOrdersBox.setItems(storeFrontViewController.getStoreOrders().getOrders());
+		}
 	}
 
 	@FXML
@@ -55,6 +64,11 @@ public class StoreOrdersViewController {
 				stage.show();
 			} catch (IOException e) {
 				e.printStackTrace();
+			} catch (NullPointerException e) {
+				Alert a = new Alert(Alert.AlertType.ERROR);
+				a.setHeaderText("There are no orders to show!");
+				a.setContentText("Please add an order to open the window!");
+				a.showAndWait();
 			}
 
 	}
