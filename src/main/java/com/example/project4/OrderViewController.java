@@ -4,7 +4,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -39,6 +41,12 @@ public class OrderViewController {
 	void placeOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getStoreOrders().add(storeFrontViewController.getOrder());
 		storeFrontViewController.makeNewOrder();
+		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		a.setHeaderText("Order complete!");
+		a.showAndWait();
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML

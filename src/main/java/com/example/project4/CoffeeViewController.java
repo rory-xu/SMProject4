@@ -5,7 +5,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -143,6 +145,12 @@ public class CoffeeViewController implements Initializable {
 	@FXML
 	void addCoffeeToOrderButtonClick(ActionEvent event) {
 		storeFrontViewController.getOrder().add(coffee);
+		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		a.setHeaderText("Coffee order added!");
+		a.showAndWait();
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML

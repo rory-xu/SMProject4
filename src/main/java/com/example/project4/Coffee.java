@@ -3,6 +3,10 @@ package com.example.project4;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A coffee object that can have many addons
+ * @author Rory Xu, Hassan Alfareed
+ */
 public class Coffee extends MenuItem implements Customizable {
 
 	private List<String> addIns = new ArrayList<>();

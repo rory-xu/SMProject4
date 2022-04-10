@@ -6,7 +6,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -153,6 +155,12 @@ public class DonutViewController implements Initializable {
 		for (int i = 0; i < orderedFlavors.getItems().size(); i++) {
 			storeFrontViewController.getOrder().add(orderedFlavors.getItems().get(i));
 		}
+		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+		a.setHeaderText("Donut order added!");
+		a.showAndWait();
+		Node source = (Node) event.getSource();
+		Stage stage = (Stage) source.getScene().getWindow();
+		stage.close();
 	}
 
 	@FXML
