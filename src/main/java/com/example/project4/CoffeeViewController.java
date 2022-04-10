@@ -7,10 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.ResourceBundle;
 
 /**
  * This class controls the coffee view window and determines what happens when certain actions are made
@@ -167,8 +164,7 @@ public class CoffeeViewController {
 
 	/**
 	 * When the add to order button is clicked, the coffee is added to the order basket
-	 * Closes the window after a successful addition of coffee
-	 * @param event On button click
+	 * @param event Closes the window after a successful addition of coffee
 	 */
 	@FXML
 	void addCoffeeToOrderButtonClick(ActionEvent event) {
@@ -190,7 +186,7 @@ public class CoffeeViewController {
 	}
 
 	/**
-	 * Initializes the window and pre-populates data
+	 * Initializes the coffee window and pre-populates data
 	 */
 	public void initialize() {
 		ObservableList<String> coffeeSizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");

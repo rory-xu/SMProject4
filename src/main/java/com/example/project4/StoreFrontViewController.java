@@ -17,18 +17,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+/**
+ * This class controls the store front window and determines what happens when certain actions are made
+ * @author Rory Xu, Hassan Alfareed
+ */
 public class StoreFrontViewController {
 
 	private Stage stage;
 	private Scene scene;
 	private Parent root;
-
 	private int orderNumber = 1;
 	private Order order = new Order(orderNumber);
 	private StoreOrders storeOrders = new StoreOrders();
 
+	/**
+	 * Opens the donut view window
+	 */
 	@FXML
-	public void donutButtonClick(ActionEvent actionEvent) throws IOException {
+	public void donutButtonClick() {
 		try {
 			FXMLLoader donutLoader = new FXMLLoader(getClass().getResource("donutView.fxml"));
 			root = donutLoader.load();
@@ -44,8 +50,11 @@ public class StoreFrontViewController {
 		}
 	}
 
+	/**
+	 * Opens the coffee view window
+	 */
 	@FXML
-	public void coffeeButtonClick(ActionEvent actionEvent) throws IOException {
+	public void coffeeButtonClick() {
 		try {
 			FXMLLoader coffeeLoader = new FXMLLoader(getClass().getResource("coffeeView.fxml"));
 			root = coffeeLoader.load();
@@ -61,8 +70,11 @@ public class StoreFrontViewController {
 		}
 	}
 
+	/**
+	 * Opens the basket window
+	 */
 	@FXML
-	public void ordersButtonClick(ActionEvent actionEvent) throws IOException {
+	public void ordersButtonClick() {
 		try {
 			FXMLLoader orderLoader = new FXMLLoader(getClass().getResource("orderView.fxml"));
 			root = orderLoader.load();
@@ -79,8 +91,11 @@ public class StoreFrontViewController {
 		}
 	}
 
+	/**
+	 * Opens the store orders window
+	 */
 	@FXML
-	public void storeOrdersButtonClick(ActionEvent actionEvent) throws IOException {
+	public void storeOrdersButtonClick() {
 		try {
 			FXMLLoader storeOrdersLoader = new FXMLLoader(getClass().getResource("storeOrderView.fxml"));
 			root = storeOrdersLoader.load();
@@ -97,16 +112,27 @@ public class StoreFrontViewController {
 		}
 	}
 
+	/**
+	 * Retrieves the current order being processed
+	 * @return The current order
+	 */
 	@FXML
 	public Order getOrder() {
 		return order;
 	}
 
+	/**
+	 * Retrieves the list of store orders
+	 * @return The store orders
+	 */
 	@FXML
 	public StoreOrders getStoreOrders() {
 		return storeOrders;
 	}
 
+	/**
+	 * Starts a fresh order
+	 */
 	public void makeNewOrder() {
 		orderNumber++;
 		order = new Order(orderNumber);

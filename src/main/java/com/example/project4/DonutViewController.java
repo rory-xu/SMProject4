@@ -17,21 +17,12 @@ import java.util.ResourceBundle;
  * This class controls the donut view window and determines what happens when certain actions are made
  * @author Rory Xu, Hassan Alfareed
  */
-public class DonutViewController implements Initializable {
+public class DonutViewController {
 	private StoreFrontViewController storeFrontViewController;
 	private DecimalFormat df = new DecimalFormat("#0.00");
 	private ObservableList<String> availableYeast = FXCollections.observableArrayList("Strawberry", "Chocolate", "Glazed");
 	private ObservableList<String> availableCake = FXCollections.observableArrayList("Cream", "Mint", "Sugar");
 	private ObservableList<String> availableHoles = FXCollections.observableArrayList("Jelly", "Cinnamon", "Regular");
-
-	@FXML
-	private Button addDonut;
-
-	@FXML
-	private Button addDonutsToOrder;
-
-	@FXML
-	private Button deleteDonut;
 
 	@FXML
 	private ChoiceBox<String> donutTypeBox;
@@ -49,8 +40,11 @@ public class DonutViewController implements Initializable {
 	private TextField subtotal;
 
 
+	/**
+	 * Adds a donut from the order list
+	 */
 	@FXML
-	void addDonutButtonClick(ActionEvent event) {
+	void addDonutButtonClick() {
 		String type = donutTypeBox.getValue();
 		Donut donut;
 		String flavor = availableFlavors.getSelectionModel().getSelectedItem();
@@ -124,8 +118,11 @@ public class DonutViewController implements Initializable {
 		updateSubtotal();
 	}
 
+	/**
+	 * Deletes a donut from the order list
+	 */
 	@FXML
-	void deleteDonutButtonClick(ActionEvent event) {
+	void deleteDonutButtonClick() {
 		Donut donut = orderedFlavors.getSelectionModel().getSelectedItem();
 		if (donut == null) {
 			Alert a = new Alert(Alert.AlertType.ERROR);
@@ -151,26 +148,46 @@ public class DonutViewController implements Initializable {
 		updateSubtotal();
 	}
 
+	/**
+	 * Adds the list of donuts to the order list
+	 * Displays an alert when attempting to add no donuts to an order
+	 * @param event Closes the window upon successful addition
+	 */
 	@FXML
-	void addDonutsToOrderButtonClick(ActionEvent event) throws IOException {
-		for (int i = 0; i < orderedFlavors.getItems().size(); i++) {
-			storeFrontViewController.getOrder().add(orderedFlavors.getItems().get(i));
+	void addDonutsToOrderButtonClick(ActionEvent event){
+		if (orderedFlavors.getItems().size() < 1) {
+			Alert a = new Alert(Alert.AlertType.ERROR);
+			a.setHeaderText("No donuts in order!");
+			a.setContentText("Please add donuts to the list before submitting to your order!");
+			a.showAndWait();
 		}
-		Alert a = new Alert(Alert.AlertType.CONFIRMATION);
-		a.setHeaderText("Donut order added!");
-		a.showAndWait();
-		Node source = (Node) event.getSource();
-		Stage stage = (Stage) source.getScene().getWindow();
-		stage.close();
+		else {
+			for (int i = 0; i < orderedFlavors.getItems().size(); i++) {
+				storeFrontViewController.getOrder().add(orderedFlavors.getItems().get(i));
+			}
+			Alert a = new Alert(Alert.AlertType.CONFIRMATION);
+			a.setHeaderText("Donut order added!");
+			a.showAndWait();
+			Node source = (Node) event.getSource();
+			Stage stage = (Stage) source.getScene().getWindow();
+			stage.close();
+		}
 	}
 
+	/**
+	 * Detects if the donut type is changed and adjusts the available flavors accordingly
+	 */
 	@FXML
-	void typeChanged(ActionEvent actionEvent) {
+	void typeChanged() {
 		String type = donutTypeBox.getSelectionModel().getSelectedItem();
 		if (type == null) return;
 		updateAvailableFlavors(type);
 	}
 
+	/**
+	 * Updates the available flavors list
+	 * @param type The type of donut to grab the list of available flavors from
+	 */
 	@FXML
 	void updateAvailableFlavors(String type) {
 		if (type.equals("Yeast Donut")) {
@@ -184,6 +201,9 @@ public class DonutViewController implements Initializable {
 		}
 	}
 
+	/**
+	 * Updates the subtotal when a donut order is added to the donut list
+	 */
 	@FXML
 	void updateSubtotal() {
 		double newSubtotal = 0;
@@ -193,8 +213,10 @@ public class DonutViewController implements Initializable {
 		subtotal.setText(df.format(newSubtotal));
 	}
 
-	@Override
-	public void initialize(URL url, ResourceBundle resourceBundle) {
+	/**
+	 * Initializes the donut window and pre-populates data
+	 */
+	public void initialize() {
 		ObservableList<String> donutTypes = FXCollections.observableArrayList("Yeast Donut", "Cake Donut", "Donut Hole");
 		ObservableList<String> quantity = FXCollections.observableArrayList("1", "2", "3", "4", "5");
 		donutTypeBox.setItems(donutTypes);
@@ -207,7 +229,10 @@ public class DonutViewController implements Initializable {
 		subtotal.setText(df.format(0.00));
 	}
 
-
+	/**
+	 * Sets up an access point to the storefront Controller
+	 * @param storeFrontViewController The storefront controller
+	 */
 	public void setMainController(StoreFrontViewController storeFrontViewController) {
 		this.storeFrontViewController = storeFrontViewController;
 	}

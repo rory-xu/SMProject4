@@ -1,18 +1,16 @@
 package com.example.project4;
 
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-
-import java.net.URL;
 import java.text.DecimalFormat;
-import java.util.List;
-import java.util.ResourceBundle;
 
+/**
+ * This class controls the order view window and determines what happens when certain actions are made
+ * @author Rory Xu, Hassan Alfareed
+ */
 public class OrderViewController {
 
 	private StoreFrontViewController storeFrontViewController;
@@ -76,10 +74,17 @@ public class OrderViewController {
 		grandTotalBox.setText(df.format(subTotal + subTotal * 0.0625));
 	}
 
+	/**
+	 * Sets up an access point to the store front Controller
+	 * @param storeFrontViewController The storefront controller
+	 */
 	public void setMainController(StoreFrontViewController storeFrontViewController) {
 		this.storeFrontViewController = storeFrontViewController;
 	}
 
+	/**
+	 * Initializes the order view window and pre-populates data
+	 */
 	public void init() {
 		itemsInOrder.setItems(storeFrontViewController.getOrder().getItems());
 		updateAllTotals();

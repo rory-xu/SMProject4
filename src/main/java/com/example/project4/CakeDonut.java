@@ -16,8 +16,8 @@ public class CakeDonut extends Donut {
 	}
 
 	/**
-	 * Calculates and returns the price of the donut(s)
-	 * @return The price of the donut(s)
+	 * Calculates and returns the price of the cake donut(s)
+	 * @return The price of the cake donut(s)
 	 */
 	@Override
 	public double itemPrice() {
@@ -25,7 +25,7 @@ public class CakeDonut extends Donut {
 	}
 
 	/**
-	 * Displays the donut order
+	 * Displays the cake donut order
 	 * @return The order in text form
 	 */
 	@Override
