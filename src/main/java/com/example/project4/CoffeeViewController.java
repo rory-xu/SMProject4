@@ -190,7 +190,7 @@ public class CoffeeViewController {
 	}
 
 	/**
-	 * Initializes
+	 * Initializes the window and pre-populates data
 	 */
 	public void initialize() {
 		ObservableList<String> coffeeSizes = FXCollections.observableArrayList("Short", "Tall", "Grande", "Venti");
@@ -205,6 +205,10 @@ public class CoffeeViewController {
 
 	}
 
+	/**
+	 * Sets up an access point to the storefront Controller
+	 * @param storeFrontViewController The storefront controller
+	 */
 	public void setMainController(StoreFrontViewController storeFrontViewController) {
 		this.storeFrontViewController = storeFrontViewController;
 	}

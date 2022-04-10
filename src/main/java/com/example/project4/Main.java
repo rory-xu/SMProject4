@@ -1,6 +1,7 @@
 package com.example.project4;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -15,6 +16,7 @@ public class Main extends Application {
 		stage.setTitle("Rutgers Cafe");
 		stage.setScene(scene);
 		stage.show();
+		stage.setOnCloseRequest(e -> Platform.exit());
 	}
 
 	public static void main(String[] args) {
