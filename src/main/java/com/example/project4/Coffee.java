@@ -81,21 +81,13 @@ public class Coffee extends MenuItem implements Customizable {
 	 */
 	@Override
 	public String toString() {
-		String display = null;
-		switch (Double.toString(basePrice)) {
-			case ("1.69"):
-				display = "Coffee(" + quantity + ") Short " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
-				break;
-			case ("2.09"):
-				display = "Coffee(" + quantity + ") Tall " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
-				break;
-			case ("2.49"):
-				display = "Coffee(" + quantity + ") Grande " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
-				break;
-			case ("2.89"):
-				display = "Coffee(" + quantity + ") Venti " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
-				break;
-		}
+		String display = switch (Double.toString(basePrice)) {
+			case ("1.69") -> "Coffee(" + quantity + ") Short " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
+			case ("2.09") -> "Coffee(" + quantity + ") Tall " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
+			case ("2.49") -> "Coffee(" + quantity + ") Grande " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
+			case ("2.89") -> "Coffee(" + quantity + ") Venti " + (addIns.size() > 0 ? addIns.toString() : "[No add-ins]");
+			default -> null;
+		};
 		return display;
 	}
 }

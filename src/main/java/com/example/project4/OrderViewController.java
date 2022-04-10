@@ -14,7 +14,7 @@ import java.text.DecimalFormat;
 public class OrderViewController {
 
 	private StoreFrontViewController storeFrontViewController;
-	private DecimalFormat df = new DecimalFormat("#0.00");
+	private final DecimalFormat df = new DecimalFormat("#0.00");
 
 
 	@FXML
@@ -42,7 +42,7 @@ public class OrderViewController {
 	}
 
 	@FXML
-	void removeItemButtonClick(ActionEvent event) {
+	void removeItemButtonClick() {
 		MenuItem item = itemsInOrder.getSelectionModel().getSelectedItem();
 		if (item == null) {
 			Alert a = new Alert(Alert.AlertType.ERROR);

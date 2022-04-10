@@ -16,7 +16,7 @@ import java.text.DecimalFormat;
 public class CoffeeViewController {
 
 	private StoreFrontViewController storeFrontViewController;
-	private DecimalFormat df = new DecimalFormat("#0.00");
+	private final DecimalFormat df = new DecimalFormat("#0.00");
 	Coffee coffee = new Coffee(1.69);
 
 	@FXML
@@ -105,10 +105,9 @@ public class CoffeeViewController {
 
 	/**
 	 * Adds/removes whipped cream as an add-in to/from the coffee
-	 * @param event When the checkbox is interacted with
 	 */
 	@FXML
-	void whippedCreamCheckBoxClicked(ActionEvent event) {
+	void whippedCreamCheckBoxClicked() {
 		if (whippedCreamCheckBox.isSelected()) {
 			coffee.add("Whipped Cream");
 			updateSubtotal();
@@ -126,21 +125,23 @@ public class CoffeeViewController {
 	public void sizeChanged() {
 		String size = coffeeSizeBox.getSelectionModel().getSelectedItem();
 		if (size == null) return;
-		if (size.equals("Short")) {
-			coffee.changeBasePrice(1.69);
-			updateSubtotal();
-		}
-		else if (size.equals("Tall")) {
-			coffee.changeBasePrice(2.09);
-			updateSubtotal();
-		}
-		else if (size.equals("Grande")) {
-			coffee.changeBasePrice(2.49);
-			updateSubtotal();
-		}
-		else {
-			coffee.changeBasePrice(2.89);
-			updateSubtotal();
+		switch (size) {
+			case "Short" -> {
+				coffee.changeBasePrice(1.69);
+				updateSubtotal();
+			}
+			case "Tall" -> {
+				coffee.changeBasePrice(2.09);
+				updateSubtotal();
+			}
+			case "Grande" -> {
+				coffee.changeBasePrice(2.49);
+				updateSubtotal();
+			}
+			default -> {
+				coffee.changeBasePrice(2.89);
+				updateSubtotal();
+			}
 		}
 	}
 
@@ -150,7 +151,7 @@ public class CoffeeViewController {
 	 */
 	@FXML
 	void numberOfCoffeeChanged() {
-		if (numberOfCoffeeBox.getValue().trim() == null || numberOfCoffeeBox.getValue().trim().equals("")) return;
+		if (numberOfCoffeeBox.getValue().trim().equals("")) return;
 		try {
 			coffee.changeQuantity(Integer.parseInt(numberOfCoffeeBox.getValue().trim()));
 			updateSubtotal();
@@ -196,7 +197,7 @@ public class CoffeeViewController {
 		numberOfCoffeeBox.setItems(quantity);
 		numberOfCoffeeBox.setValue("1");
 		numberOfCoffeeBox.setEditable(true);
-		numberOfCoffeeBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> {numberOfCoffeeBox.setValue(newVal);});
+		numberOfCoffeeBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> numberOfCoffeeBox.setValue(newVal));
 		coffeeSubtotal.setText(df.format(coffee.itemPrice()));
 
 	}

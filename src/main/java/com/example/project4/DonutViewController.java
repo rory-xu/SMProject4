@@ -15,10 +15,10 @@ import java.text.DecimalFormat;
  */
 public class DonutViewController {
 	private StoreFrontViewController storeFrontViewController;
-	private DecimalFormat df = new DecimalFormat("#0.00");
-	private ObservableList<String> availableYeast = FXCollections.observableArrayList("Strawberry", "Chocolate", "Glazed");
-	private ObservableList<String> availableCake = FXCollections.observableArrayList("Cream", "Mint", "Sugar");
-	private ObservableList<String> availableHoles = FXCollections.observableArrayList("Jelly", "Cinnamon", "Regular");
+	private final DecimalFormat df = new DecimalFormat("#0.00");
+	private final ObservableList<String> availableYeast = FXCollections.observableArrayList("Strawberry", "Chocolate", "Glazed");
+	private final ObservableList<String> availableCake = FXCollections.observableArrayList("Cream", "Mint", "Sugar");
+	private final ObservableList<String> availableHoles = FXCollections.observableArrayList("Jelly", "Cinnamon", "Regular");
 
 	@FXML
 	private ChoiceBox<String> donutTypeBox;
@@ -221,7 +221,7 @@ public class DonutViewController {
 		numberOfDonutsBox.setItems(quantity);
 		numberOfDonutsBox.setValue("1");
 		numberOfDonutsBox.setEditable(true);
-		numberOfDonutsBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> {numberOfDonutsBox.setValue(newVal);});
+		numberOfDonutsBox.getEditor().textProperty().addListener((obs, oldVal, newVal) -> numberOfDonutsBox.setValue(newVal));
 		availableFlavors.setItems(availableYeast);
 		subtotal.setText(df.format(0.00));
 	}

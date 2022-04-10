@@ -12,7 +12,7 @@ import java.text.DecimalFormat;
 public class OrderDetailsViewController {
 
 	private StoreOrdersViewController storeOrdersViewController;
-	private DecimalFormat df = new DecimalFormat("#0.00");
+	private final DecimalFormat df = new DecimalFormat("#0.00");
 
 
 	@FXML

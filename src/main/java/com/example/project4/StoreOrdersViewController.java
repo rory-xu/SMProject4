@@ -20,7 +20,7 @@ import java.text.DecimalFormat;
  */
 public class StoreOrdersViewController {
 	private StoreFrontViewController storeFrontViewController;
-	private DecimalFormat df = new DecimalFormat("#0.00");
+	private final DecimalFormat df = new DecimalFormat("#0.00");
 
 	@FXML
 	private ListView<Order> storeOrdersBox;
