@@ -153,9 +153,11 @@ public class CoffeeViewController {
 	void numberOfCoffeeChanged() {
 		if (numberOfCoffeeBox.getValue().trim().equals("")) return;
 		try {
+			if (Integer.parseInt(numberOfCoffeeBox.getValue().trim()) < 1) throw new NumberFormatException();
 			coffee.changeQuantity(Integer.parseInt(numberOfCoffeeBox.getValue().trim()));
 			updateSubtotal();
 		} catch (NumberFormatException e) {
+			numberOfCoffeeBox.setValue("1");
 			Alert a = new Alert(Alert.AlertType.ERROR);
 			a.setHeaderText("Invalid number!");
 			a.setContentText("The number of coffees you requested is not valid, please enter a numerical value!");

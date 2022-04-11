@@ -42,74 +42,38 @@ public class DonutViewController {
 	@FXML
 	void addDonutButtonClick() {
 		String type = donutTypeBox.getValue();
-		Donut donut;
 		String flavor = availableFlavors.getSelectionModel().getSelectedItem();
-		switch(type) {
+		int quantity = 1;
+		Donut donut = new YeastDonut(flavor, quantity);
+		try {
+			quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
+			if (quantity < 1) throw new NumberFormatException();
+		} catch (NumberFormatException e) {
+			Alert a = new Alert(Alert.AlertType.ERROR);
+			a.setHeaderText("Invalid number!");
+			a.setContentText("The number of donuts you requested is not valid, please enter a numerical value!");
+			a.show();
+			return;
+		}
+		switch (type) {
 			case "Yeast Donut":
-				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
-					donut = new YeastDonut(flavor, quantity);
-					if (flavor == null) {
-						Alert a = new Alert(Alert.AlertType.ERROR);
-						a.setHeaderText("Flavor not valid!");
-						a.setContentText("Please select a flavor before adding a donut to your order!");
-						a.showAndWait();
-					}
-					else {
-						availableFlavors.getItems().remove(flavor);
-						orderedFlavors.getItems().add(donut);
-					}
-				} catch (NumberFormatException e) {
-					Alert a = new Alert(Alert.AlertType.ERROR);
-					a.setHeaderText("Invalid number!");
-					a.setContentText("The number of donuts you requested is not valid, please enter a numerical value!");
-					a.show();
-				}
+				donut = new YeastDonut(flavor, quantity);
 				break;
-
 			case "Cake Donut":
-				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
-					donut = new CakeDonut(flavor, quantity);
-					if (flavor == null) {
-						Alert a = new Alert(Alert.AlertType.ERROR);
-						a.setHeaderText("Flavor not valid!");
-						a.setContentText("Please select a flavor before adding a donut to your order!");
-						a.showAndWait();
-					}
-					else {
-						availableFlavors.getItems().remove(flavor);
-						orderedFlavors.getItems().add(donut);
-					}
-				} catch (NumberFormatException e) {
-					Alert a = new Alert(Alert.AlertType.ERROR);
-					a.setHeaderText("Invalid number!");
-					a.setContentText("The number of donuts you requested is not valid, please enter a numerical value!");
-					a.show();
-				}
+				donut = new CakeDonut(flavor, quantity);
 				break;
-
 			case "Donut Hole":
-				try {
-					int quantity = Integer.parseInt(numberOfDonutsBox.getValue().trim());
-					donut = new DonutHole(flavor, quantity);
-					if (flavor == null) {
-						Alert a = new Alert(Alert.AlertType.ERROR);
-						a.setHeaderText("Flavor not valid!");
-						a.setContentText("Please select a flavor before adding a donut to your order!");
-						a.showAndWait();
-					}
-					else {
-						availableFlavors.getItems().remove(flavor);
-						orderedFlavors.getItems().add(donut);
-					}
-				} catch (NumberFormatException e) {
-					Alert a = new Alert(Alert.AlertType.ERROR);
-					a.setHeaderText("Invalid number!");
-					a.setContentText("The number of donuts you requested is not valid, please enter a numerical value!");
-					a.show();
-				}
+				donut = new DonutHole(flavor, quantity);
 				break;
+		}
+		if (flavor == null) {
+			Alert a = new Alert(Alert.AlertType.ERROR);
+			a.setHeaderText("Flavor not valid!");
+			a.setContentText("Please select a flavor before adding a donut to your order!");
+			a.showAndWait();
+		} else {
+			availableFlavors.getItems().remove(flavor);
+			orderedFlavors.getItems().add(donut);
 		}
 		updateSubtotal();
 	}
